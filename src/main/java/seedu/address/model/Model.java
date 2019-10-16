@@ -10,6 +10,7 @@ import seedu.address.model.accommodation.Accommodation;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.day.Day;
+import seedu.address.model.day.Itinerary;
 
 /**
  * The API of the Model component.
@@ -19,6 +20,7 @@ public interface Model {
     Predicate<Accommodation> PREDICATE_SHOW_ALL_ACCOMMODATIONS = unused -> true;
     Predicate<Activity> PREDICATE_SHOW_ALL_ACTIVITIES = unused -> true;
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    Predicate<Day> PREDICATE_SHOW_ALL_DAYS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -130,19 +132,19 @@ public interface Model {
 
     // CONTACT METHODS
     /**
-     * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
+     * Returns true if a contacts with the same identity as {@code contacts} exists in the contact list.
      */
     boolean hasContact(Contact contact);
 
     /**
      * Deletes the given contacts.
-     * The contacts must exist in the address book.
+     * The contacts must exist in the contact list.
      */
     void deleteContact(Contact target);
 
     /**
      * Adds the given contacts.
-     * {@code contacts} must not already exist in the address book.
+     * {@code contacts} must not already exist in the contact list.
      */
     void addContact(Contact contact);
 
@@ -150,7 +152,7 @@ public interface Model {
      * Replaces the given contacts {@code target} with {@code editedContact}.
      * {@code target} must exist in the address book.
      * The contacts identity of {@code editedContact} must not be the same as another existing contacts in the
-     * address book.
+     * contact list.
      */
     void setContact(Contact target, Contact editedContact);
 
@@ -165,11 +167,22 @@ public interface Model {
 
     // DAY METHODS
 
-    void deleteDay(int n);
+    void deleteDay(Day target);
 
     void addDays(int n);
 
     void setDays(List<Day> days);
 
-    void setDays(int n);
+    void setDays(Itinerary itinerary);
+
+    /**
+     * Returns an unmodifiable view of the filtered days list
+     */
+    ObservableList<Day> getFilteredDayList();
+
+    /**
+     * Updates the filter of the filtered days list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDayList(Predicate<Day> predicate);
 }
