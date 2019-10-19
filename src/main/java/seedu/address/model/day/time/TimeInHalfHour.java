@@ -8,6 +8,10 @@ import seedu.address.model.day.time.exceptions.TimeOutOfBoundsException;
  * Guarantees: time is in 30 minutes intervals.
  */
 public class TimeInHalfHour {
+    public static final String VALIDATION_REGEX = "^([2][0-3][0,3][0]|[0-1][0-9][0,3][0])$";
+    public static final String MESSAGE_CONSTRAINTS = "Time should be 24-hour clock format and be in intervals of"
+            + " 30 minutes (for example: 2330).";
+
     private final int hour;
     private final int minutes;
 
@@ -15,7 +19,7 @@ public class TimeInHalfHour {
         if (hour < 0 || hour >= 24 || minutes < 0 || minutes >= 60) {
             throw new TimeOutOfBoundsException();
         }
-        if (minutes != 30 || minutes != 0) {
+        if (minutes != 30 && minutes != 0) {
             throw new NotInIntervalsOf30MinException();
         }
 
@@ -29,6 +33,10 @@ public class TimeInHalfHour {
 
     public int getMinutes() {
         return minutes;
+    }
+
+    public static boolean isValidTime(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
