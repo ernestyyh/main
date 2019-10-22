@@ -1,18 +1,20 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.accommodation.Accommodation;
-import seedu.address.model.activity.Activity;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Itinerary;
+import seedu.address.model.field.Name;
+import seedu.address.model.itineraryitem.accommodation.Accommodation;
+import seedu.address.model.itineraryitem.activity.Activity;
 
 /**
  * The API of the Model component.
@@ -57,7 +59,7 @@ public interface Model {
     void setPlannerFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code planner}.
+     * Replaces planner data with the data in {@code planner}.
      */
     void setPlanner(ReadOnlyPlanner planner);
 
@@ -207,6 +209,16 @@ public interface Model {
     void setDays(List<Day> days);
 
     void setDays(Itinerary itinerary);
+
+    /**
+     * Replaces planner's name with {@code name}.
+     */
+    void setItineraryName(Name name);
+
+    /**
+     * Replaces planner's start date with {@code startDate}.
+     */
+    void setItineraryStartDate(LocalDate startDate);
 
     /**
      * Returns an unmodifiable view of the filtered days list

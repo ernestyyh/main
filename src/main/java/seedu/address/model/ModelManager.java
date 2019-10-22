@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -11,14 +12,16 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.accommodation.Accommodation;
-import seedu.address.model.activity.Activity;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Itinerary;
+import seedu.address.model.field.Name;
+import seedu.address.model.itineraryitem.accommodation.Accommodation;
+import seedu.address.model.itineraryitem.activity.Activity;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -93,10 +96,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setPlanner(ReadOnlyPlanner planner) {
-
+        this.planner.setName(planner.getName());
+        this.planner.setStartDate(planner.getStartDate());
         this.planner.resetDataAccommodation(planner);
         this.planner.resetDataActivity(planner);
         this.planner.resetDataContact(planner);
+        this.planner.resetDataDay(planner);
     }
 
     @Override
@@ -155,6 +160,16 @@ public class ModelManager implements Model {
     }
 
     //=========== DAY ================================================================================
+    @Override
+    public void setItineraryName(Name name) {
+        this.planner.setName(name);
+    }
+
+    @Override
+    public void setItineraryStartDate(LocalDate sd) {
+        this.planner.setStartDate(sd);
+    }
+
     @Override
     public void deleteDay(Day target) {
         planner.removeDay(target);

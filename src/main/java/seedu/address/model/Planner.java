@@ -2,20 +2,22 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
 
-import seedu.address.model.accommodation.Accommodation;
-import seedu.address.model.accommodation.UniqueAccommodationList;
-import seedu.address.model.activity.Activity;
-import seedu.address.model.activity.UniqueActivityList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.Itinerary;
+import seedu.address.model.field.Name;
+import seedu.address.model.itineraryitem.accommodation.Accommodation;
+import seedu.address.model.itineraryitem.accommodation.UniqueAccommodationList;
+import seedu.address.model.itineraryitem.activity.Activity;
+import seedu.address.model.itineraryitem.activity.UniqueActivityList;
 
 
 /**
@@ -53,10 +55,10 @@ public class Planner implements ReadOnlyPlanner {
         resetDataContact(toBeCopied);
         //resetDataActivity(toBeCopied);
         //resetDataAccommodation(toBeCopied);
+        //resetDataDay(toBeCopied);
     }
 
     //// For ACCOMMODATION list overwrite operations
-
     /**
      * Resets the existing data of this {@code Planner} with {@code newData}.
      */
@@ -242,13 +244,30 @@ public class Planner implements ReadOnlyPlanner {
         contacts.remove(key);
     }
 
-    //// For DAY list overwrite operations
+    //// For Itinerary overwrite operations
     /**
-     * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
+     * Resets the existing data of this {@code Planner} with {@code newData}.
      */
-    public boolean hasDay(Day day) {
-        requireNonNull(day);
-        return days.contains(day);
+    public void resetDataDay(ReadOnlyPlanner newData) {
+        requireNonNull(newData);
+
+        setDays(newData.getDayList());
+    }
+
+    public Name getName() {
+        return days.getName();
+    }
+
+    public LocalDate getStartDate() {
+        return days.getStartDate();
+    }
+
+    public void setName(Name name) {
+        days.setName(name);
+    }
+
+    public void setStartDate(LocalDate date) {
+        days.setStartDate(date);
     }
 
     /**
@@ -265,6 +284,14 @@ public class Planner implements ReadOnlyPlanner {
      */
     public void setDays(List<Day> days) {
         this.days.setDays(days);
+    }
+
+    /**
+     * Returns true if a contacts with the same identity as {@code contacts} exists in the address book.
+     */
+    public boolean hasDay(Day day) {
+        requireNonNull(day);
+        return days.contains(day);
     }
 
     /**

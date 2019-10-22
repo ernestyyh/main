@@ -3,7 +3,7 @@ package seedu.address.model.day;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.day.exceptions.DuplicateDayException;
+import seedu.address.model.field.Name;
 
 /**
  * Itinerary class helps to manage the list of days in an Planner.
@@ -21,6 +22,13 @@ public class Itinerary implements Iterable<Day> {
     private final ObservableList<Day> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    private Name name;
+    private LocalDate startDate;
+
+    public Itinerary() {
+        this.name = new Name("Untitled");
+        this.startDate = LocalDate.now();
+    }
     /**
      * Returns true if the list contains an equivalent contacts as the given argument.
      */
@@ -35,9 +43,27 @@ public class Itinerary implements Iterable<Day> {
     public void add(int numDays) {
         requireNonNull(numDays);
         for (int i = 0; i < numDays; i++) {
-            Day toAdd = new Day(new ArrayList<>());
+            Day toAdd = new Day();
             internalList.add(toAdd);
         }
+    }
+
+    public Name getName() {
+        return this.name;
+    }
+
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
+
+    public void setName(Name name) {
+        requireNonNull(name);
+        this.name = name;
+    }
+
+    public void setStartDate(LocalDate date) {
+        requireNonNull(date);
+        this.startDate = date;
     }
 
     public void setDays(Itinerary replacement) {
@@ -51,9 +77,9 @@ public class Itinerary implements Iterable<Day> {
      */
     public void setDays(List<Day> days) {
         requireAllNonNull(days);
-        if (!daysAreUnique(days)) {
-            throw new DuplicateDayException();
-        }
+        //if (!daysAreUnique(days)) {
+        //    throw new DuplicateDayException();
+        //}
 
         internalList.setAll(days);
     }
