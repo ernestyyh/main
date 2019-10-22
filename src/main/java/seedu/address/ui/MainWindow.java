@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,15 +28,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private SplitDisplay splitDisplay;
+    // private SplitDisplay splitDisplay;
+    private CentralDisplay centralDisplay;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private BorderPane centralDisplayPlaceholder;
 
     @FXML
-    private StackPane splitDisplayPanelPlaceholder;
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,9 +67,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        splitDisplay = new SplitDisplay(logic.getFilteredAccommodationList(), logic.getFilteredActivityList(),
+        /* splitDisplay = new SplitDisplay(logic.getFilteredAccommodationList(), logic.getFilteredActivityList(),
                 logic.getFilteredContactList());
-        splitDisplayPanelPlaceholder.getChildren().add(splitDisplay.getRoot());
+        splitDisplayPanelPlaceholder.getChildren().add(splitDisplay.getRoot()); */
+
+        centralDisplay = new CentralDisplay();
+        centralDisplayPlaceholder.getChildren().add(centralDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -117,10 +122,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public SplitDisplay getSplitDisplay() {
-        return splitDisplay;
     }
 
     /**

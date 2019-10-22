@@ -7,6 +7,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -31,13 +32,13 @@
           <Label text="Plan²travel App"/>
         </HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-without-border" >
           <padding>
             <Insets top="5" right="10" left="10" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-without-border"
                    maxHeight="10">
           <padding>
             <Insets right="15" left="15"/>
@@ -51,12 +52,15 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>-->
 
-        <SplitPane fx:id="splitDisplay" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <!--<SplitPane fx:id="splitDisplay" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="splitDisplayPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </SplitPane>
+          <StackPane fx:id="splitDisplayPanelPlaceholder" VBox.vgrow="NEVER"/>
+        </SplitPane>-->
+
+        <BorderPane fx:id="centralDisplayPlaceholder" styleClass="border-pane" VBox.vgrow="ALWAYS">
+        </BorderPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

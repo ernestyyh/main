@@ -136,8 +136,14 @@
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.pane-with-border {
+.pane-without-border {
      -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.border-pane {
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-border-color: rgba(255, 255, 255, 0.2) transparent transparent transparent;
+     -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -327,7 +333,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #splitDisplay, #personWebpage {
+#filterField, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
