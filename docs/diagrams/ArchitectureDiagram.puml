@@ -3,7 +3,6 @@
 !include <office/Concepts/documents>
 !include <office/Users/user>
 !include style.puml
-scale 1.3
 
 Package " "<<Rectangle>>{
     Class UI UI_COLOR
