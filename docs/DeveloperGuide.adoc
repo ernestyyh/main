@@ -85,7 +85,7 @@ image::UiClassDiagram.png[]
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `FeedbackDisplay`, `ContactListPanel`,
-`ActivityListPanel`, `AccomodationListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+`ActivityListPanel`, `AccommodationListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of the
@@ -116,10 +116,10 @@ link:{repoURL}/blob/master/src/main/java/seedu/planner/logic/Logic.java[`Logic.j
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add activity n/Climb Fuji a/Mount Fuji")
-` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add activity n/Climb Fuji a/Mount Fuji du/420")`
+API call.
 
-.Interactions Inside the Logic Component for the `add activity n/Climb Fuji a/Mount Fuji` Command
+.Interactions Inside the Logic Component for the `add activity n/Climb Fuji a/Mount Fuji du/420` Command
 image::AddSequenceDiagram.png[]
 
 NOTE: The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
@@ -142,8 +142,8 @@ The `Model`,
 * stores a `ActivityManager`, `AccommodationManager`, `ContactManager` and `Itinerary` that represents the managers for activity,
 accommodation, contact and day respectively.
 * exposes an unmodifiable `ObservableList<Activity>`, `ObservableList<Accommodation>`, `ObservableList<Contact>` and
-`ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the
-data in the list change.
+`ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the
+data in these lists changes.
 * does not depend on any of the other three components.
 // end::model[]
 
@@ -171,9 +171,9 @@ image::AccommodationStorageUML.png[]
 The `Accommodation Storage` component,
 
 * can save `Accommodation` objects in json format and read it back.
-* as `Tag is a field in Accommodation`, similarly JsonAdaptedTag is a field within JsonAdaptedAccommodation. Hence
+* as `Tag` is a field in `Accommodation`, similarly `JsonAdaptedTag` is a field within `JsonAdaptedAccommodation`. Hence
 the association as shown in the diagram above.
-* as `Contact is a field in Accommodation`, similarly JsonAdaptedContact is a field within JsonAdaptedAccommodation. Hence
+* as `Contact` is a field in `Accommodation`, similarly `JsonAdaptedContact` is a field within `JsonAdaptedAccommodation`. Hence
 the association as shown in the diagram above.
 
 ==== Activity Storage component
@@ -183,9 +183,9 @@ image::ActivityStorageUML.png[]
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/activity/ActivityStorage.java[`ActivityStorage.java`]
 
 * can save `Activity` objects in json format and read it back.
-* as `Tag is a field in Activity`, similarly JsonAdaptedTag is a field within JsonAdaptedActivity. Hence
+* as `Tag` is a field in `Activity`, similarly `JsonAdaptedTag` is a field within `JsonAdaptedActivity`. Hence
 the association as shown in the diagram above.
-* as `Contact is a field in Activity`, similarly JsonAdaptedContact is a field within JsonAdaptedActivity. Hence
+* as `Contact` is a field in `Activity`, similarly `JsonAdaptedContact` is a field within `JsonAdaptedActivity`. Hence
 the association as shown in the diagram above.
 
 ==== Contact Storage component
@@ -195,7 +195,7 @@ image::ContactStorageUML.png[]
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/contact/ContactStorage.java[`ContactStorage.java`]
 
 * can save `Contact` objects in json format and read it back.
-* as `Tag is a field in Contact`, similarly JsonAdaptedTag is a field within JsonAdaptedContact. Hence
+* as `Tag` is a field in `Contact`, similarly `JsonAdaptedTag` is a field within `JsonAdaptedContact`. Hence
 the association as shown in the diagram above.
 
 ==== Itinerary Storage component
@@ -205,9 +205,9 @@ image::ItineraryStorageUML.png[]
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/day/ItineraryStorage.java[`ItineraryStorage.java`]
 
 * can save `Itinerary` objects in json format and read it back.
-* as `ActivityWithTime is a field in Day`, similarly JsonAdaptedActivityWithTime is a field within JsonAdaptedDay. Hence
+* as `ActivityWithTime` is a field in `Day`, similarly JsonAdaptedActivityWithTime is a field within JsonAdaptedDay. Hence
 the association as shown in the diagram above.
-* as `Activity is a field in ActivityWithTime`, similarly JsonAdaptedActivity is a field within JsonAdaptedActivityWithTime.
+* as `Activity` is a field in `ActivityWithTime`, similarly `JsonAdaptedActivity` is a field within `JsonAdaptedActivityWithTime`.
 Hence the association as shown in the diagram above.
 
 [[Design-Commons]]

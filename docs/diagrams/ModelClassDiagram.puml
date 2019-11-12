@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+scale 1.3
 
 Package Model <<Rectangle>>{
 Interface Model <<Interface>>

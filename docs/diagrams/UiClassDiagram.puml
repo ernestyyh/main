@@ -4,6 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 'skinparam linetype ortho
+scale 1.3
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>

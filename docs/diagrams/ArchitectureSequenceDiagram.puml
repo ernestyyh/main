@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 1.25
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR

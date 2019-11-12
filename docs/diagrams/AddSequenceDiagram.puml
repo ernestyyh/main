@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 1.3
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -13,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add activity n/Climb Fuji a/Mount Fuji")
+[-> LogicManager : execute("add activity n/Climb Fuji a/Mount Fuji du/420")
 activate LogicManager
 
-LogicManager -> PlannerParser : parseCommand("add activity n/Climb Fuji a/Mount Fuji")
+LogicManager -> PlannerParser : parseCommand("add activity n/Climb Fuji a/Mount Fuji du/420")
 activate PlannerParser
 
 create AddCommandParser
@@ -26,10 +27,10 @@ activate AddCommandParser
 AddCommandParser --> PlannerParser
 deactivate AddCommandParser
 
-PlannerParser -> AddCommandParser : parse("activity n/Climb Fuji a/Mount Fuji")
+PlannerParser -> AddCommandParser : parse("activity n/Climb Fuji a/Mount Fuji du/420")
 activate AddCommandParser
 
-AddCommandParser -> AddCommandParser : parseActivity("n/Climb Fuji a/Mount Fuji")
+AddCommandParser -> AddCommandParser : parseActivity("n/Climb Fuji a/Mount Fuji du/420")
 activate AddCommandParser
 
 create AddActivityCommand

@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
+scale 1.3
 
 package Logic {
 
@@ -53,7 +54,7 @@ LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZCommand: XYZCommand = AddActivityCommand, \nLoadCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
