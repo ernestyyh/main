@@ -12,7 +12,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/AY1920S1-CS2103T-T09-1/main/tree/master
+:repoURL: https://github.com/AY1920S1-CS2103T-T09-1/main
 
 By: `Team Plan²travel`      Since: `Sep 2019`      Licence: `MIT`
 
@@ -32,10 +32,11 @@ image::ArchitectureDiagram.png[]
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 [TIP]
-The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
+The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/tree/master/docs/diagrams/[diagrams] folder.
 Refer to the <<UsingPlantUml#, Using PlantUML guide>> to learn how to create and edit diagrams.
 
-`Main` has two classes called link:{repoURL}/src/main/java/seedu/address/Main.java[`Main`] and link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
+`Main` has two classes called link:{repoURL}/blob/master/src/main/java/seedu/planner/Main.java[`Main`] and
+link:{repoURL}/blob/master/src/main/java/seedu/planner/MainApp.java[`MainApp`]. It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
@@ -57,7 +58,8 @@ Each of the four components
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
 
-For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
+For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and
+exposes its functionality using the `LogicManager.java` class.
 
 .Class Diagram of the Logic Component
 image::LogicClassDiagram.png[]
@@ -65,9 +67,10 @@ image::LogicClassDiagram.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the
+command `delete activity 1`.
 
-.Component interactions for `delete 1` command
+.Component interactions for `delete activity 1` command
 image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
@@ -79,11 +82,15 @@ The sections below give more details of each component.
 .Structure of the UI Component
 image::UiClassDiagram.png[]
 
-*API* : link:{repoURL}/blob/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `FeedbackDisplay`, `ContactListPanel`, `ActivityListPanel`, `AccomodationListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `FeedbackDisplay`, `ContactListPanel`,
+`ActivityListPanel`, `AccomodationListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+in the `src/main/resources/view` folder. For example, the layout of the
+link:{repoURL}/blob/master/src/main/java/seedu/planner/ui/MainWindow.java[`MainWindow`] is specified in
+link:{repoURL}/blob/master/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
@@ -101,7 +108,7 @@ The `UI` component,
 image::LogicClassDiagram.png[]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+link:{repoURL}/blob/master/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `PlannerParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
@@ -109,12 +116,14 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add activity n/Climb Fuji a/Mount Fuji")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add activity n/Climb Fuji a/Mount Fuji")
+` API call.
 
 .Interactions Inside the Logic Component for the `add activity n/Climb Fuji a/Mount Fuji` Command
 image::AddSequenceDiagram.png[]
 
-NOTE: The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.
 
 // end::logic[]
 
@@ -125,13 +134,16 @@ NOTE: The lifeline for `AddCommandParser` should end at the destroy marker (X) b
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/model/Model.java[`Model.java`]
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores a `ActivityManager`, `AccommodationManager`, `ContactManager` and `Itinerary` that represents the managers for activity, accommodation, contact and day respectively.
-* exposes an unmodifiable `ObservableList<Activity>`, `ObservableList<Accommodation>`, `ObservableList<Contact>` and `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `ActivityManager`, `AccommodationManager`, `ContactManager` and `Itinerary` that represents the managers for activity,
+accommodation, contact and day respectively.
+* exposes an unmodifiable `ObservableList<Activity>`, `ObservableList<Accommodation>`, `ObservableList<Contact>` and
+`ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the
+data in the list change.
 * does not depend on any of the other three components.
 // end::model[]
 
@@ -142,7 +154,7 @@ The `Model`,
 .Structure of the Storage Component
 image::StorageUML.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/storage/Storage.java[`Storage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -154,7 +166,7 @@ The `Storage` component,
 .Structure of Accommodation Storage component
 image::AccommodationStorageUML.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/storage/accommodation/AccommodationStorage.java[`AccommodationStorage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/accommodation/AccommodationStorage.java[`AccommodationStorage.java`]
 
 The `Accommodation Storage` component,
 
@@ -168,7 +180,7 @@ the association as shown in the diagram above.
 .Structure of Activity Storage component
 image::ActivityStorageUML.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/storage/activity/ActivityStorage.java[`ActivityStorage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/activity/ActivityStorage.java[`ActivityStorage.java`]
 
 * can save `Activity` objects in json format and read it back.
 * as `Tag is a field in Activity`, similarly JsonAdaptedTag is a field within JsonAdaptedActivity. Hence
@@ -180,7 +192,7 @@ the association as shown in the diagram above.
 .Structure of Contact Storage component
 image::ContactStorageUML.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/storage/contact/ContactStorage.java[`ContactStorage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/contact/ContactStorage.java[`ContactStorage.java`]
 
 * can save `Contact` objects in json format and read it back.
 * as `Tag is a field in Contact`, similarly JsonAdaptedTag is a field within JsonAdaptedContact. Hence
@@ -190,7 +202,7 @@ the association as shown in the diagram above.
 .Structure of Itinerary Storage component
 image::ItineraryStorageUML.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/storage/day/ItineraryStorage.java[`ItineraryStorage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/planner/storage/day/ItineraryStorage.java[`ItineraryStorage.java`]
 
 * can save `Itinerary` objects in json format and read it back.
 * as `ActivityWithTime is a field in Day`, similarly JsonAdaptedActivityWithTime is a field within JsonAdaptedDay. Hence
@@ -255,7 +267,8 @@ Both UndoCommand and RedoCommand are not UndoableCommands, no Events are generat
 is returned and the Event is `undone`.
 
 *Step 9.* To redo the command that has been undone, the user executes `redo` command. A `RedoCommand` is generated and it
-is `not` an `UndoableCommand`. This execution is similar to steps `6` and `7`, except Event is popped from redo stack instead and pushed to undo stack.
+is `not` an `UndoableCommand`. This execution is similar to steps `6` and `7`, except Event is popped from redo stack instead and
+pushed to undo stack.
 
 The *following two sequence diagrams* shows how the user's input is handled for `'delete activity 1'`.
 
@@ -291,7 +304,8 @@ a RedoCommand, or any other Commands.
 image::UndoRedoActivityDiagram.png[]
 
 [NOTE]
-If the user does not execute an UndoableCommand, UndoCommand or RedoCommand, the stack of Events in CommandHistory will *not be affected*. +
+If the user does not execute an UndoableCommand, UndoCommand or RedoCommand, the stack of Events in CommandHistory will *not be
+affected*. +
 (eg. view, list commands)
 
 ==== Design Considerations
@@ -334,16 +348,23 @@ in the list.
 === Schedule optimisation
 ==== Implementation
 
-Scheduled activities in a day can be modeled as a `Directed Acyclic Graph (DAG)` where the `vertices` are the `activities` and an `edge` from 1 vertex to another means that the activities are `not overlapping`. Just like DAGs, there are `no cycles` within the schedule due to the linearity of time.
-When the command is executed, an `adjacency list` is formed from the existing activities within the schedule. The paths are then traced, with the help of a utility method, from the adjacency list to find `all possible combinations` of activities such that there are no overlaps between activities. The list of paths are then sorted
-by their total cost. If there are `multiple paths` with the `same total cost`, the one with the `most number of activities` is selected. The existing day is then replaced with a day that contains the new schedule made from the path.
+Scheduled activities in a day can be modeled as a `Directed Acyclic Graph (DAG)` where the `vertices` are the `activities` and an
+`edge` from 1 vertex to another means that the activities are `not overlapping`. Just like DAGs, there are `no cycles` within the
+schedule due to the linearity of time.
+When the command is executed, an `adjacency list` is formed from the existing activities within the schedule. The paths are then
+traced, with the help of a utility method, from the adjacency list to find `all possible combinations` of activities such that there
+are no overlaps between activities. The list of paths are then sorted
+by their total cost. If there are `multiple paths` with the `same total cost`, the one with the `most number of activities` is
+selected. The existing day is then replaced with a day that contains the new schedule made from the path.
 
 * optimise INDEX_OF_DAY -- optimises and de-conflicts the schedule. This operation supports activities with or without
 a cost. Activities without a cost have a default cost of $0.00.
 
 Given below is a sample usage of the feature:
 
-The user calls `optimise` command on an existing day with `overlapping activities` within its schedule. This results in a schedule `without overlaps` such that the `lowest overall cost` and the `most number of activities` if there are `multiple combinations` with the `same total cost`, such that the user's time is maximised.
+The user calls `optimise` command on an existing day with `overlapping activities` within its schedule. This results in a schedule
+`without overlaps` such that the `lowest overall cost` and the `most number of activities` if there are `multiple combinations` with
+the `same total cost`, such that the user's time is maximised.
 
 Shown below is a summary of the execution of the command.
 
@@ -367,7 +388,8 @@ Aspect: Algorithm to de-conflict
 *** Fast runtime.
 
 ** Cons:
-*** Use of SSSP algorithms like Djikstra or Bellman Ford restricts the criteria of optimisation due to the limits of edge weight (i.e. cost).
+*** Use of SSSP algorithms like Djikstra or Bellman Ford restricts the criteria of optimisation due to the limits of edge weight
+(i.e. cost).
 
 Aspect: De-conflict process
 
@@ -399,7 +421,8 @@ Eg. `schedule ACTIVITY_INDEX st/START_TIME d/DAY_INDEX`
 
 ==== Current Implementation
 
-The keywords from the command given by user is parsed using `ScheduleCommandParser` which converts the string variable of start time into a LocalDateTime object, while activity index and day index are converted into Index objects.
+The keywords from the command given by user is parsed using `ScheduleCommandParser` which converts the string variable of start
+time into a LocalDateTime object, while activity index and day index are converted into Index objects.
 These are then passed to the `ScheduleCommand` for execution later on.
 
 Given below is a sequence diagram showing the creation of `ScheduleCommand`:
@@ -444,19 +467,28 @@ image::ScheduleCommandExecution.png[]
 // tag::autoschedule[]
 === Auto Schedule feature
 ==== Rationale
-There are times when users are planning for an overseas trip, there are so many activities in their activity list that they want to do but the problems faced are that they are unable to finish all the activities in the list or they are unable to find an optimal schedule plan.
+There are times when users are planning for an overseas trip, there are so many activities in their activity list that they want to do
+but the problems faced are that they are unable to finish all the activities in the list or they are unable to find an optimal schedule
+plan.
 
 ==== Overview
-The `autoschedule` command requires user to specify either the `tag name` or the `activity name` itself in order of the type of activity that they want.
-For example, `t/shopping t/sightseeing t/dining` would means an activity of `shopping` type would be scheduled first followed by `sightseeing` and then `dining`.
-Before using the autoschedule command, users are to fill up their activity list first and ensure that they have input the `duration` for each activity and are recommended to input their `priority` for those activities.
-Afterwards, `autoschedule` would serve to ensure that the activities scheduled do not overlap, are according to what the users prioritised first and that all activities have a chance to be scheduled.
+The `autoschedule` command requires user to specify either the `tag name` or the `activity name` itself in order of the type of
+activity that they want.
+For example, `t/shopping t/sightseeing t/dining` would means an activity of `shopping` type would be scheduled first followed by
+`sightseeing` and then `dining`.
+Before using the autoschedule command, users are to fill up their activity list first and ensure that they have input the `duration`
+for each activity and are recommended to input their `priority` for those activities.
+Afterwards, `autoschedule` would serve to ensure that the activities scheduled do not overlap, are according to what the users
+prioritised first and that all activities have a chance to be scheduled.
 
 
 === Implementation
-The keywords from the command given by the user is parsed using `AutoScheduleCommandParser` which converts all the `tag` or `name` prefix's argument with their respective `start time` ,if given, in `NameOrTagWithTime` class and stores them in a list to maintain the same ordering as given by the user.
+The keywords from the command given by the user is parsed using `AutoScheduleCommandParser` which converts all the `tag` or `name`
+prefix's argument with their respective `start time` ,if given, in `NameOrTagWithTime` class and stores them in a list to maintain
+the same ordering as given by the user.
 
-If `address` is specified, it is wrapped in an `Address` class and if the `day index(es)` to schedule are specified, they stored in a list with each index wrapped in an `Index` class.
+If `address` is specified, it is wrapped in an `Address` class and if the `day index(es)` to schedule are specified, they stored in
+a list with each index wrapped in an `Index` class.
 The `list of NameOrTagWithTime`, `address` and `list of day indexes` are then passed to the `AutoScheduleCommand` for execution later on.
 
 Given below is a sequence diagram showing the creation of `AutoScheduleCommand`:
@@ -477,49 +509,63 @@ Below shows the checks taken by `AutoScheduleCommand`:
 .Activity diagram showing how `AutoScheduleCommand` checks the requirement given by user:
 image::AutoScheduleActivityDiagram1.png[]
 
-After filtering the activity list, `AutoScheduleCommand` will proceed to begin preparation for the scheduling of the first activity of those specified day(s).
+After filtering the activity list, `AutoScheduleCommand` will proceed to begin preparation for the scheduling of the first activity of
+those specified day(s).
 
-*Step 4.* It will filter the activity list that has been filtered by address to get all the activities with the same tag or activity name as the first activity to schedule.
+*Step 4.* It will filter the activity list that has been filtered by address to get all the activities with the same tag or activity name
+as the first activity to schedule.
 
-*Step 5.* After which it will sort the list such that the activity that has not been scheduled will be scheduled first.It will ensure that for cases where both activities has not been scheduled before, the one with the higher priority will be scheduled first.
+*Step 5.* After which it will sort the list such that the activity that has not been scheduled will be scheduled first.It will ensure that
+for cases where both activities has not been scheduled before, the one with the higher priority will be scheduled first.
 
 .Activity diagram showing how `AutoScheduleCommand` handles the preparation for the scheduling of the first activity:
 image::AutoScheduleActivityDiagram2.png[]
 
-*Step 6.* Next, `AutoScheduleCommand` will check if the chosen activity to be scheduled does not overlap with the start time of the next activity if user specify.
+*Step 6.* Next, `AutoScheduleCommand` will check if the chosen activity to be scheduled does not overlap with the start time of the next
+activity if user specify.
 
-*Step 7.* If the chosen activity overlaps, it will traverse the filtered list, picking the next activity with the **next lowest count** in the itinerary and check if it overlaps.
-The process will continue until it finds a suitable activity or it has finished traversing the whole filtered list. If it is planning for the last activity of the day, it will instead check whether the activity chosen overlap til the next day.
+*Step 7.* If the chosen activity overlaps, it will traverse the filtered list, picking the next activity with the **next lowest count** in
+the itinerary and check if it overlaps.
+The process will continue until it finds a suitable activity or it has finished traversing the whole filtered list. If it is planning for
+the last activity of the day, it will instead check whether the activity chosen overlap til the next day.
 
 .Activity diagram showing how `AutoScheduleCommand` finds an activity to schedule:
 image::AutoScheduleActivityDiagram3.png[]
 
-Step 4 to Step 7 will repeat for the next activity to schedule for that day until it finished scheduling for that day or it could not find a suitable activity to schedule.
+Step 4 to Step 7 will repeat for the next activity to schedule for that day until it finished scheduling for that day or it could not find
+a suitable activity to schedule.
 If there other days to schedule, the steps taken will also be the same as Step 4 to Step 7.
 
 ==== Design Considerations
 
 ===== Aspect: Counting the number of times similar activity of the same name or tag appears in the list
-* **Current Choice:** Count the number of times all the similar activities appear in the itinerary every time we are planning to schedule an activity.
+* **Current Choice:** Count the number of times all the similar activities appear in the itinerary every time we are planning to schedule
+an activity.
 ** Pros: It will ensure that the count number for the similar activities will always be right before they are chosen to be scheduled
-** Cons: Slow down the program as we have to traverse through all the activities for each day everytime we are planning to schedule for an activity.
+** Cons: Slow down the program as we have to traverse through all the activities for each day everytime we are planning to schedule for an
+activity.
 * **Alternative:** Have a counter inside the activity itself to keep track
 ** Pros: Significantly improve the runtime speed and less complicated to implement
-** Cons: Over time, the count might be inaccurate due to multiple scheduling and unscheduling which alter the count number and we might not have keep track of it at certain point of time.
+** Cons: Over time, the count might be inaccurate due to multiple scheduling and unscheduling which alter the count number and we might
+not have keep track of it at certain point of time.
 
 ===== Aspect: Account for travelling time
 * **Current Choice:** Allows user to input the start time of activity
 ** Pros: Gives user the flexibility and they are better able to gauge the travelling time of each activity
-** Cons: It restrict the number of possible activities that could be scheduled as we have to consider activity not overlapping with the start time of the next activty.
+** Cons: It restrict the number of possible activities that could be scheduled as we have to consider activity not overlapping with the
+start time of the next activty.
 * **Alternative:** Fix a break of 30min between every activity to acount for travel time
-** Pros: Activities that user prioritised are more likely to be scheduled as we do not have to consider overlap of the start time of next activity.
-** Cons: Certain activity may require more travelling time. If we fix a longer travelling time, it might not be optimising the schedule plan as certain activity might have shorter travelling time.
+** Pros: Activities that user prioritised are more likely to be scheduled as we do not have to consider overlap of the start time of next
+activity.
+** Cons: Certain activity may require more travelling time. If we fix a longer travelling time, it might not be optimising the schedule
+plan as certain activity might have shorter travelling time.
 // end::autoschedule[]
 
 // tag::autocomplete[]
 === Auto Complete feature
 ==== Rationale
-There are many commands to learn in our program and some of the commands can be wordy. In order to ease the learning curve and to help the user be productive as quickly as possible, autocomplete was implemented.
+There are many commands to learn in our program and some of the commands can be wordy. In order to ease the learning curve and to help
+the user be productive as quickly as possible, autocomplete was implemented.
 
 ==== Implementation
 *KEY IDEA:*
@@ -539,9 +585,12 @@ AutoCompleteSuggester makes use of this and checks the input for these categorie
 
 * If the input lacks the command word, then the best matching command word will be suggested.
 * If the command word is provided, but the preamble is not (and it is required by the command), then the preamble will be suggested.
-* If the input contains the command word and contains the preamble(when necessary), then the required prefixes and optional prefixes will be suggested. Since there are some prefix that should only be used, the input will be checked to see if these prefixes are present and remove them from the suggestions.
+* If the input contains the command word and contains the preamble(when necessary), then the required prefixes and optional prefixes
+will be suggested. Since there are some prefix that should only be used, the input will be checked to see if these prefixes are present
+and remove them from the suggestions.
 
-The `AutoCompleteParser` supports the `AutoCompleteSuggester` by parsing the user input into the command word, the preamble and a list of prefixes used in the program.
+The `AutoCompleteParser` supports the `AutoCompleteSuggester` by parsing the user input into the command word, the preamble and a list
+of prefixes used in the program.
 
 Given below is a sequence diagram showing the generation of suggestions:
 
@@ -555,7 +604,8 @@ Below is how the `autocomplete` feature is triggered:
 
 *Step 1.* Modification in the text of `AutoCompleteTextField` is detected.
 
-*Step 2.* If the input is empty, hide the pop-up box which contains the suggestions. If not empty, get entries (suggestions) for the pop-up box.
+*Step 2.* If the input is empty, hide the pop-up box which contains the suggestions. If not empty, get entries (suggestions) for the
+pop-up box.
 
 *Step 3.* If there are entries, populate the pop-up box with it. Else, hide the pop-up box.
 
@@ -566,15 +616,20 @@ image::AutoCompleteActivityDiagram1.png[]
 
 Below is how entries for the pop-up box is obtained:
 
-*Step 1.* Check if input contains '<' or '>', as that would indicate that the user has accepted the suggestion of preamble, which has description enclosed with < and > (for e.g. <INDEX>) but has not replaced it with the actual preamble. If it has '<' or '>', then don't give suggestions to user.
+*Step 1.* Check if input contains '<' or '>', as that would indicate that the user has accepted the suggestion of preamble, which has
+description enclosed with < and > (for e.g. <INDEX>) but has not replaced it with the actual preamble. If it has '<' or '>', then don't
+give suggestions to user.
 
 *Step 2.* If the input does not contain '<' or '>', parse the command word.
 
-*Step 3.* Next check if command word can be found. If it is not found, suggest command words that partially matches what the user has already inputted. If command word was found, do a check if there is a space at the end of the input.
+*Step 3.* Next check if command word can be found. If it is not found, suggest command words that partially matches what the user has
+already inputted. If command word was found, do a check if there is a space at the end of the input.
 
-*Step 3.* Next check if command word can be found. If it is not found, suggest command words that partially matches what the user has already inputted. If command word was found, do a check if there is a space at the end of the input.
+*Step 3.* Next check if command word can be found. If it is not found, suggest command words that partially matches what the user has
+already inputted. If command word was found, do a check if there is a space at the end of the input.
 
-*Step 4.* If there is no space, don't give suggestions to the user as it is assumed that the user is still typing. If there is a space, then parse preamble, parse prefix and make suggestions based on the command word, preamble and prefix present in the input.
+*Step 4.* If there is no space, don't give suggestions to the user as it is assumed that the user is still typing. If there is a space,
+then parse preamble, parse prefix and make suggestions based on the command word, preamble and prefix present in the input.
 
 .Activity diagram showing how entries for the pop-up box is generated:
 image::AutoCompleteActivityDiagram2.png[]
@@ -584,17 +639,20 @@ image::AutoCompleteActivityDiagram2.png[]
 ===== Aspect: Underlying data structure to store the command words
 * **Current Choice:** Use an ArrayList
 ** Pros: Simple to implement.
-** Cons: Might be slow in providing suggestion for the command word, as in the worse case, it needs to iterate through every command word entry and check with every entry.
+** Cons: Might be slow in providing suggestion for the command word, as in the worse case, it needs to iterate through every command word
+entry and check with every entry.
 * **Alternative:** Use a Trie
 ** Pros: Faster in providing suggestion for command word as it only has to iterate through the length of the input.
 ** Cons: More complicated to implement. The Trie also needs to be built during startup.
 
-* **Reason for choice**: Given that the program does not have many commands and unlikely to have a significant number more commands in the future, search times are not an issue.
+* **Reason for choice**: Given that the program does not have many commands and unlikely to have a significant number more commands in
+the future, search times are not an issue.
 
 ===== Aspect: Checking if the user has completed typing the command word/preamble/prefix content
 * **Current Choice:** Assumes the user has finished the command word/preamble/prefix content when there is a whitespace at the end of input
 ** Pros: Simple to implement. Works in most cases.
-** Cons: Might be wrong when suggesting new prefix as there are some commands like autoschedule that have prefixes that can have 2 arguments (autoschedule t/argument1 argument2 d/argument1 argument2...)
+** Cons: Might be wrong when suggesting new prefix as there are some commands like autoschedule that have prefixes that can have 2
+arguments (autoschedule t/argument1 argument2 d/argument1 argument2...)
 * **Alternative:** Waits for a specific duration of time before giving user suggestions
 ** Pros: More likely to provide suggestions when the user needs it.
 ** Cons: There might be a noticeable delay in the suggestions appearing if the specific duration is too long. More complicated to implement.
@@ -605,7 +663,8 @@ image::AutoCompleteActivityDiagram2.png[]
 
 ==== Current Implementation
 
-Internally, Timetable is a List of ActivityWithTime. This gives the Timetable flexibility to accept Activities that start and end at any time instead of fixed intervals (e.g. 30 minute intervals) while allow for conflicting ActivityWithTime.
+Internally, Timetable is a List of ActivityWithTime. This gives the Timetable flexibility to accept Activities that start and end at
+any time instead of fixed intervals (e.g. 30 minute intervals) while allow for conflicting ActivityWithTime.
 
 ==== Design considerations
 * Alternative 1: an Array of time slots that stores Activity
@@ -616,15 +675,19 @@ Internally, Timetable is a List of ActivityWithTime. This gives the Timetable fl
 
 * Alternative 2: a TreeSet of ActivityWithTime
 
-** Pros: Allows flexible start times and end times. Fast access to Activity in Timetable. Does not allow ActivityWithTime objects to have the same start times.
+** Pros: Allows flexible start times and end times. Fast access to Activity in Timetable. Does not allow ActivityWithTime objects to
+have the same start times.
 
-** Con: UI for itinerary might be difficult to implement as each the size of each block of ActivityWithTime in the UI is not the same. Does not allow for conflicting startDateTime between ActivityWithTime.
+** Con: UI for itinerary might be difficult to implement as each the size of each block of ActivityWithTime in the UI is not the same.
+Does not allow for conflicting startDateTime between ActivityWithTime.
 
 * Alternative 3(current choice): a List of ActivityWithTime
 
-** Pros: Allows flexible start times and end times. ActivityWithTime can have the same startDateTime, thus allowing conflicting ActivityWithTime.
+** Pros: Allows flexible start times and end times. ActivityWithTime can have the same startDateTime, thus allowing conflicting
+ActivityWithTime.
 
-** Con: UI for itinerary might be difficult to implement as each the size of each block of ActivityWithTime in the UI is not the same. Slower access time if the size of the List is large.
+** Con: UI for itinerary might be difficult to implement as each the size of each block of ActivityWithTime in the UI is not the same.
+Slower access time if the size of the List is large.
 // end::timetable[]
 
 === Logging
@@ -632,7 +695,8 @@ Internally, Timetable is a List of ActivityWithTime. This gives the Timetable fl
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
 
 * The logging level can be controlled using the `logLevel` setting in the configuration file (See <<Implementation-Configuration>>)
-* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified
+logging level
 * Currently log messages are output through: `Console` and to a `.log` file.
 
 *Logging Levels*
@@ -645,7 +709,8 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 [[Implementation-Configuration]]
 === Configuration
 
-Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file
+(default: `config.json`).
 
 == Documentation
 
@@ -823,7 +888,8 @@ _{More to be added}_
 
 1.  Application should be easy to use for new user when following the User Guide.
 2.  Application's interface should be intuitive and easy to understand for the user.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to
+accomplish most of the tasks faster using commands than using the mouse.
 
 *Reliability*
 
@@ -850,14 +916,16 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample activities, accommodations, contacts and days filled with activities. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample activities, accommodations, contacts and days filled with activities. The window size
+may not be optimum.
 
 === Adding
 ==== Adding activities
 * Add a new activity to the planner
 .. Prerequisites: Arguments are valid and compulsory parameters are provided.
 .. Test case: `add activity n/Swim at the beach a/Glass Beach du/180 p/12345678 pr/1 t/Fun` +
-Expected: Adds an activity named "Swim at the beach", with address "Glass Beach", a duration of 180 minutes, a contact with the phone number 12345678, a priority level of 1 and with the tag "Fun".
+Expected: Adds an activity named "Swim at the beach", with address "Glass Beach", a duration of 180 minutes, a contact with the phone
+number 12345678, a priority level of 1 and with the tag "Fun".
 ..  Test case: `add activity n/Swim at the beach` +
 Expected: No activity is added. Error details shown in the feedback display.
 .. Other incorrect add commands to try: `add activity a/Glass Beach`, `add activity n/Swimming du/120` +
@@ -867,7 +935,8 @@ Expected: Similar to previous
 * Add a new activity to the planner
 .. Prerequisites: Arguments are valid and compulsory parameters are provided.
 .. Test case: `add accommodation n/Hotel 87 a/Hilton Crescent p/12345678 t/Cozy` +
-Expected: Adds an accommodation named "Hotel 87", with address "Hilton Crescent", a contact with phone number 12345678, and with the tag "Cozy".
+Expected: Adds an accommodation named "Hotel 87", with address "Hilton Crescent", a contact with phone number 12345678, and with the
+tag "Cozy".
 ..  Test case: `add accommodation n/Hotel 123` +
 Expected: No accommodation is added. Error details shown in the feedback display.
 .. Other incorrect add commands to try: `add accommodation a/Kappa street`, `add accommodation p/87654321 t/lmao` +
@@ -941,12 +1010,14 @@ Expected: Similar to previous
 .  Generate a schedule for specified day(s) based on the tags or activity name given.
 .. Prerequisites: Ensure the tag or activity name is present in activity list.
 .. Test case: `autoschedule t/sightseeing 1030 t/dining 1200 d/1`
-   Expected: An activity of sightseeing tagged has been scheduled at 1030 followed by another activity of dining tagged scheduled at 1200 on day 1.
+   Expected: An activity of sightseeing tagged has been scheduled at 1030 followed by another activity of dining tagged scheduled at
+1200 on day 1.
 
 === Scheduling activities
 ==== Schedule
 * Schedule an activity to a day at a certain time
-.. Prerequisites: Arguments are valid, and end date time of the activity must not be after the end of the trip. Also, the provided index for both activity and day must be less than or equal to the size of their respective list(activity list, itinerary).
+.. Prerequisites: Arguments are valid, and end date time of the activity must not be after the end of the trip. Also, the provided
+index for both activity and day must be less than or equal to the size of their respective list(activity list, itinerary).
 .. Test case: `schedule 1 d/1 st/1000` +
 Expected: Schedules activity 1 into day 1 at time 10am.
 ..  Test case: `schedule 1 d/16 st/1000` +
@@ -961,7 +1032,8 @@ Expected: Similar to previous
 
 === Unschedule activity from day
 * Unschedules an activity from a day
-.. Prerequisites: Arguments are valid. Also, the index for the preamble is the index of the activity within the day(as shown from list day). Day DAY_INDEX must exist in the itinerary.
+.. Prerequisites: Arguments are valid. Also, the index for the preamble is the index of the activity within the day(as shown from
+list day). Day DAY_INDEX must exist in the itinerary.
 .. Test case: `unschedule 1 d/1` +
 Expected: Unschedules the first activity in day 1.
 ..  Test case: `unschedule d/16 st/1000` +
