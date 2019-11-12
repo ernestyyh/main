@@ -482,7 +482,7 @@ Afterwards, `autoschedule` would serve to ensure that the activities scheduled d
 prioritised first and that all activities have a chance to be scheduled.
 
 
-=== Implementation
+==== Implementation
 The keywords from the command given by the user is parsed using `AutoScheduleCommandParser` which converts all the `tag` or `name`
 prefix's argument with their respective `start time` ,if given, in `NameOrTagWithTime` class and stores them in a list to maintain
 the same ordering as given by the user.
